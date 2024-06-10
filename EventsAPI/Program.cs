@@ -1,5 +1,6 @@
 using EventsAPI.Entity.Data.Context;
 using EventsAPI.Interface;
+using EventsAPI.Middleware;
 using EventsAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,6 +40,8 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = "swagger";  // Set RoutePrefix to "swagger"
     });
 }
+
+app.UseErrorHandling(); // Registra o middleware de tratamento de erros
 
 app.UseHttpsRedirection();
 

@@ -17,7 +17,6 @@ public class LocalController : MainController
     }
 
     [HttpGet]
-    [MiddlewareLogs("LocalController", "GetLocalController")]
     public async Task<IActionResult> Get()
     {
         IList<Local> locals = await _localRepository.Get();
@@ -25,7 +24,6 @@ public class LocalController : MainController
     }
 
     [HttpGet("{id}")]
-    [MiddlewareLogs("LocalController", "GetLocalController")]
     public async Task<IActionResult> Get(int id)
     {
         Local? local = await _localRepository.Get(id);
@@ -33,7 +31,6 @@ public class LocalController : MainController
     }
 
     [HttpPost]
-    [MiddlewareLogs("LocalController", "PostLocalController")]
     public async Task<IActionResult> Post([FromBody] Local local)
     {
         if (local == null)
@@ -47,7 +44,6 @@ public class LocalController : MainController
     }
 
     [HttpPut]
-    [MiddlewareLogs("LocalController", "PutLocalController")]
     public async Task<IActionResult> Put([FromBody] Local local)
     {
         if (local == null)
@@ -61,7 +57,6 @@ public class LocalController : MainController
     }
 
     [HttpDelete("{id}")]
-    [MiddlewareLogs("LocalController", "DeleteLocalController")]
     public async Task<IActionResult> Delete(int id)
     {
         await _localRepository.Delete(id);

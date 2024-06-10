@@ -16,7 +16,6 @@ public class ContactController : MainController
     }
 
     [HttpGet]
-    [MiddlewareLogs("ContactController", "GetContactController")]
     public async Task<IActionResult> Get()
     {
         IList<Contact> events = await _contactRepository.Get();
@@ -24,7 +23,6 @@ public class ContactController : MainController
     }
 
     [HttpGet("{id}")]
-    [MiddlewareLogs("ContactController", "GetContactController")]
     public async Task<IActionResult> Get(int id)
     {
         Contact Contact = await _contactRepository.Get(id);
@@ -32,7 +30,6 @@ public class ContactController : MainController
     }
 
     [HttpPost]
-    [MiddlewareLogs("ContactController", "PostContactController")]
     public async Task<IActionResult> Post([FromBody] Contact Contact)
     {
         if (Contact == null)
@@ -46,7 +43,6 @@ public class ContactController : MainController
     }
 
     [HttpPut]
-    [MiddlewareLogs("ContactController", "PutContactController")]
     public async Task<IActionResult> Put([FromBody] Contact Contact)
     {
         if (Contact == null)
@@ -60,7 +56,6 @@ public class ContactController : MainController
     }
 
     [HttpDelete("{id}")]
-    [MiddlewareLogs("ContactController", "DeleteContactController")]
     public async Task<IActionResult> Delete(int id)
     {
         await _contactRepository.Delete(id);

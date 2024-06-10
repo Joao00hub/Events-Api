@@ -17,7 +17,6 @@ public class EventController : MainController
     }
 
     [HttpGet]
-    [MiddlewareLogs("EventController", "GetEventController")]
     public async Task<IActionResult> Get()
     {
         IList<Event> events = await _eventRepository.Get();
@@ -25,7 +24,6 @@ public class EventController : MainController
     }
 
     [HttpGet("{id}")]
-    [MiddlewareLogs("EventController", "GetEventController")]
     public async Task<IActionResult> Get(int id)
     {
         Event? Event = await _eventRepository.Get(id);
@@ -33,7 +31,6 @@ public class EventController : MainController
     }
 
     [HttpPost]
-    [MiddlewareLogs("EventController", "PostEventController")]
     public async Task<IActionResult> Post([FromBody] Event Event)
     {
         if (Event == null)
@@ -47,7 +44,6 @@ public class EventController : MainController
     }
 
     [HttpPut]
-    [MiddlewareLogs("EventController", "PutEventController")]
     public async Task<IActionResult> Put([FromBody] Event Event)
     {
         if (Event == null)
@@ -61,7 +57,6 @@ public class EventController : MainController
     }
 
     [HttpDelete("{id}")]
-    [MiddlewareLogs("EventController", "DeleteEventController")]
     public async Task<IActionResult> Delete(int id)
     {
         await _eventRepository.Delete(id);

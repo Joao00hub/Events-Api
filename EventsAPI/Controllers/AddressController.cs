@@ -16,15 +16,22 @@ public class AddressController : MainController
     }
 
     [HttpGet]
-    [MiddlewareLogs("AddressController", "GetAddressController")]
     public async Task<IActionResult> Get()
     {
-        IList<Address> addresses = await _addressRepository.Get();
-        return Ok(addresses);
+        try
+        {
+            IList<Address> addresses = await _addressRepository.Get();
+            return Ok(addresses);
+        }
+        catch (Exception ex)
+        {
+
+            throw new Exception(ex.Message);
+        }
+       
     }
 
     [HttpGet("{id}")]
-    [MiddlewareLogs("AddressController", "GetAddressController")]
     public async Task<IActionResult> Get(int id)
     {
         Address address = await _addressRepository.Get(id);
@@ -32,7 +39,6 @@ public class AddressController : MainController
     }
 
     [HttpPost]
-    [MiddlewareLogs("AddressController", "PostAddressController")]
     public async Task<IActionResult> Post([FromBody] Address address)
     {
         if (address == null)
@@ -46,7 +52,6 @@ public class AddressController : MainController
     }
 
     [HttpPut]
-    [MiddlewareLogs("AddressController", "PutAddressController")]
     public async Task<IActionResult> Put([FromBody] Address address)
     {
         if (address == null)
@@ -60,7 +65,6 @@ public class AddressController : MainController
     }
 
     [HttpDelete("{id}")]
-    [MiddlewareLogs("AddressController", "DeleteAddressController")]
     public async Task<IActionResult> Delete(int id)
     {
         await _addressRepository.Delete(id);
